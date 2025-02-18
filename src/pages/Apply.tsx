@@ -186,7 +186,6 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Send, X } from "lucide-react";
-import axios from "axios";
 
 export default function Apply() {
   const navigate = useNavigate();
@@ -201,22 +200,41 @@ export default function Apply() {
     program: "incubation",
   });
 
+  const [loading, setLoading] = useState(false);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setLoading(true);
 
     try {
-      const response = await axios.post(
-        "YOUR_GOOGLE_SCRIPT_WEB_APP_URL", // Replace with your Apps Script Web App URL
-        formData,
-        { headers: { "Content-Type": "application/json" } }
+      const response = await fetch(
+        "https://script.google.com/a/macros/ipu.ac.in/s/AKfycbzCoI-s1qJh_ellDrHbHz35aBgx2fjzPyZG6QY6moZj__k0hZqg_CyA2t3M2Hvd53kd/exec",
+        {
+          method: "POST",
+          mode: "no-cors",
+          body: JSON.stringify(formData),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
       );
-      
-      console.log(response.data);
+
       alert("Application submitted successfully!");
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        startupName: "",
+        stage: "idea",
+        description: "",
+        program: "incubation",
+      });
     } catch (error) {
-      console.error("Error submitting form:", error);
-      alert("Submission failed. Please try again.");
+      console.error("Error:", error);
+      alert("Error submitting application.");
     }
+
+    setLoading(false);
   };
 
   const handleChange = (
@@ -361,10 +379,13 @@ export default function Apply() {
               <div className="flex justify-end">
                 <button
                   type="submit"
-                  className="bg-[#AC7E4F] text-white px-8 py-3 rounded-full hover:bg-[#8E6A42] transition-colors flex items-center"
+                  className={`bg-[#AC7E4F] text-white px-8 py-3 rounded-full transition-colors flex items-center ${
+                    loading ? "opacity-50 cursor-not-allowed" : "hover:bg-[#8E6A42]"
+                  }`}
+                  disabled={loading}
                 >
-                  Submit Application
-                  <Send className="ml-2 h-5 w-5" />
+                  {loading ? "Submitting..." : "Submit Application"}
+                  {!loading && <Send className="ml-2 h-5 w-5" />}
                 </button>
               </div>
             </form>
