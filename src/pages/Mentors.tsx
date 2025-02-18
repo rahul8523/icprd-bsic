@@ -4,7 +4,7 @@ import { Linkedin, Twitter, Globe } from 'lucide-react';
 
 const mentors = [
   {
-    name: "Dr. Rajesh Kumar",
+    name: "Dr. Rajesh ",
     role: "Technology Expert",
     image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=800",
     expertise: ["AI/ML", "Cloud Computing", "Tech Strategy"],
