@@ -4,11 +4,11 @@ import { Linkedin, Twitter, Globe } from 'lucide-react';
 
 const mentors = [
   {
-    name: "Dr. Rajesh ",
+    name: "Shri Chirag Paswan  ",
     role: "Technology Expert",
-    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=800",
+    image: "https://i.ibb.co/1t1dJ4zN/Screenshot-2025-02-22-at-12-32-24-PM.png",
     expertise: ["AI/ML", "Cloud Computing", "Tech Strategy"],
-    bio: "Former CTO at major tech companies with 20+ years of experience in scaling technology solutions.",
+    bio: "Hon'ble Minister of Food Processing Industries Government of India",
     linkedin: "#",
     twitter: "#",
     website: "#"
